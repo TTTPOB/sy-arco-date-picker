@@ -311,6 +311,9 @@ export default class ArcoCalendarPlugin extends Plugin {
         await this.insertDailyNoteLink(protyle, date);
         this.disposeSlashPicker();
       },
+      onClose: () => {
+        this.disposeSlashPicker();
+      },
     });
     app.mount(container);
 
@@ -319,15 +322,9 @@ export default class ArcoCalendarPlugin extends Plugin {
         this.disposeSlashPicker();
       }
     };
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        this.disposeSlashPicker();
-      }
-    };
 
     window.setTimeout(() => {
       document.addEventListener('mousedown', onMouseDown);
-      document.addEventListener('keydown', onKeyDown);
     }, 0);
 
     this.slashPicker = {
@@ -335,7 +332,6 @@ export default class ArcoCalendarPlugin extends Plugin {
       app,
       cleanup: () => {
         document.removeEventListener('mousedown', onMouseDown);
-        document.removeEventListener('keydown', onKeyDown);
       },
     };
   }

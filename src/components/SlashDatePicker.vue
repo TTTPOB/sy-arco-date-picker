@@ -1,10 +1,15 @@
 <template>
   <a-config-provider :locale="locale">
-    <a-date-picker
-      v-model="selected"
-      hide-trigger
-      :style="{ width: '268px', margin: 'auto', boxShadow: 'none' }"
+    <div
+      ref="containerRef"
+      tabindex="0"
+      class="slash-date-picker-container"
     >
+      <a-date-picker
+        v-model="selected"
+        hide-trigger
+        :style="{ width: '268px', margin: 'auto', boxShadow: 'none' }"
+      >
       <template #cell="{ date }">
         <div class="arco-picker-date">
           <div class="arco-picker-date-value" @click="selectDate(date)" :class="{ 'keyboard-focused': isCellFocused(date) }">
@@ -19,7 +24,8 @@
           <a-button size="mini" @click="selectOffset(1)"> {{ slash.tomorrow }} </a-button>
         </a-space>
       </template>
-    </a-date-picker>
+      </a-date-picker>
+    </div>
   </a-config-provider>
 </template>
 
@@ -31,9 +37,11 @@ import { onMounted, onUnmounted } from 'vue';
 
 const emit = defineEmits<{
   (e: 'select', date: Date): void;
+  (e: 'close'): void;
 }>();
 
 const { locale } = useLocale();
+const containerRef = ref<HTMLElement | null>(null);
 const slash = computed(() => {
   const value = (siyuanI18n.value as Record<string, any>)?.slash;
   return {
@@ -68,43 +76,57 @@ function handleKeyDown(event: KeyboardEvent) {
 
   switch (key) {
     case 'ArrowUp':
+      event.stopImmediatePropagation();
       event.preventDefault();
       navigateDate(-1, 'week');
       break;
     case 'ArrowDown':
+      event.stopImmediatePropagation();
       event.preventDefault();
       navigateDate(1, 'week');
       break;
     case 'ArrowLeft':
+      event.stopImmediatePropagation();
       event.preventDefault();
       navigateDate(-1, 'day');
       break;
     case 'ArrowRight':
+      event.stopImmediatePropagation();
       event.preventDefault();
       navigateDate(1, 'day');
       break;
     case 'Home':
+      event.stopImmediatePropagation();
       event.preventDefault();
       moveToFirstOfMonth();
       break;
     case 'End':
+      event.stopImmediatePropagation();
       event.preventDefault();
       moveToLastOfMonth();
       break;
     case 'PageUp':
+      event.stopImmediatePropagation();
       event.preventDefault();
       navigateDate(-1, 'month');
       break;
     case 'PageDown':
+      event.stopImmediatePropagation();
       event.preventDefault();
       navigateDate(1, 'month');
       break;
     case 'Enter':
     case ' ':
+      event.stopImmediatePropagation();
       event.preventDefault();
       if (focusedDate.value) {
         selectDate(focusedDate.value);
       }
+      break;
+    case 'Escape':
+      event.stopImmediatePropagation();
+      event.preventDefault();
+      emit('close');
       break;
   }
 }
@@ -141,11 +163,15 @@ function isCellFocused(date: Date): boolean {
 
 // Set up keyboard event listener when component mounts
 onMounted(() => {
-  document.addEventListener('keydown', handleKeyDown);
+  // Set default focused date to today
+  focusedDate.value = new Date();
+  isKeyboardFocused.value = true;
+  // Use capture phase to intercept events before a-date-picker internal handlers
+  document.addEventListener('keydown', handleKeyDown, { capture: true });
 });
 
 // Clean up event listener when component unmounts
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeyDown);
+  document.removeEventListener('keydown', handleKeyDown, { capture: true });
 });
 </script>
