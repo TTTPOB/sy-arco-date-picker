@@ -148,3 +148,18 @@
   background: var(--b3-menu-background);
   box-shadow: var(--b3-dialog-shadow);
 }
+
+// Keyboard focus indicator for date cells
+.arco-picker-cell {
+  .arco-picker-date-value.keyboard-focused {
+    background-color: var(--color-fill-2);
+    border: 2px solid rgb(var(--primary-6)) !important;
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 4px rgba(var(--primary-6), 0.3);
+  }
+
+  // Ensure the focused state works with exist class
+  .arco-picker-date-value.exist.keyboard-focused {
+    background-color: var(--color-primary-light-2) !important;
+  }
+}
