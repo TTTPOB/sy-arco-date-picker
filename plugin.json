@@ -1,5 +1,5 @@
 {
-  "name": "arco-calendar",
+  "name": "arco-date-picker",
   "author": "svchord",
   "url": "https://github.com/svchord/siyuan-arco-calendar",
   "version": "1.5.0",
@@ -11,12 +11,12 @@
     "all"
   ],
   "displayName": {
-    "zh_CN": "日历面板",
-    "en_US": "Calendar Panel"
+    "zh_CN": "日期选择",
+    "en_US": "Date Picker"
   },
   "description": {
-    "zh_CN": "日历面板上快速新建或转到日记",
-    "en_US": "Quickly create a new or go to diary on the calendar panel"
+    "zh_CN": "使用日历与斜杠命令快速插入日记链接",
+    "en_US": "Use calendar and slash commands to insert daily note links quickly"
   },
   "readme": {
     "zh_CN": "README.md",

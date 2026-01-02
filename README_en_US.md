@@ -1,8 +1,8 @@
-# arco-calendar
+# arco-date-picker
 
 [简体中文](README.md) \| English
 
-Siyuan note calendar plug-in developed by relying on arco design component library
+Siyuan calendar plugin based on Arco Design, with slash commands to insert daily note links
 
 <img width="1280" alt="preview" src="https://github.com/svchord/siyuan-arco-calendar/assets/61345763/6bdf09a9-b5a1-48f7-b499-340d44397787">
 

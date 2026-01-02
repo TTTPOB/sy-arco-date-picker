@@ -2,6 +2,18 @@
   "openCalendar": "calendario abierto",
   "tabName": "Calendario",
   "placeholder": "Seleccionar libreta...",
+  "slash": {
+    "date": "Date Picker",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday"
+  },
+  "settings": {
+    "notebook": "Daily notebook",
+    "insertFormat": "Insert format",
+    "insertBlock": "Block ref ((id))",
+    "insertUrl": "Link [title](siyuan://blocks/id)"
+  },
   "msg": {
     "begin": "[Complemento de calendario]",
     "notNoteBook": "No se pudo obtener el cuaderno actual, configúrelo manualmente"

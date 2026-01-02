@@ -2,6 +2,18 @@
   "openCalendar": "打开日历",
   "tabName": "日历",
   "placeholder": "选择笔记本...",
+  "slash": {
+    "date": "日期选择",
+    "today": "今天",
+    "tomorrow": "明天",
+    "yesterday": "昨天"
+  },
+  "settings": {
+    "notebook": "日记笔记本",
+    "insertFormat": "插入格式",
+    "insertBlock": "块引用 ((id))",
+    "insertUrl": "链接 [标题](siyuan://blocks/id)"
+  },
   "msg": {
     "begin": "[日历插件]",
     "notNoteBook": "获取当前笔记本失败，请手动设置"

@@ -1,8 +1,8 @@
-# arco-calendar
+# arco-date-picker
 
 简体中文 \| [English](README_en_US.md)
 
-依赖 arco design 组件库开发的思源笔记日历插件
+基于 Arco Design 的思源日历插件，增加斜杠菜单快速插入日记链接
 
 <img width="1280" alt="preview" src="https://github.com/svchord/siyuan-arco-calendar/assets/61345763/6bdf09a9-b5a1-48f7-b499-340d44397787">
 

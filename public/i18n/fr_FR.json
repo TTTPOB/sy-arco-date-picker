@@ -2,6 +2,18 @@
   "openCalendar": "calendrier ouvert",
   "tabName": "Calendrier",
   "placeholder": "Sélectionnez le bloc-notes...",
+  "slash": {
+    "date": "Date Picker",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday"
+  },
+  "settings": {
+    "notebook": "Daily notebook",
+    "insertFormat": "Insert format",
+    "insertBlock": "Block ref ((id))",
+    "insertUrl": "Link [title](siyuan://blocks/id)"
+  },
   "msg": {
     "begin": "[Plug-in de calendrier]",
     "notNoteBook": "Impossible d'obtenir le bloc-notes actuel, veuillez le définir manuellement"

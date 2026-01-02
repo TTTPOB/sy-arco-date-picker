@@ -2,6 +2,18 @@
   "openCalendar": "open calendar",
   "tabName": "Calendar",
   "placeholder": "Select notebook...",
+  "slash": {
+    "date": "Date Picker",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday"
+  },
+  "settings": {
+    "notebook": "Daily notebook",
+    "insertFormat": "Insert format",
+    "insertBlock": "Block ref ((id))",
+    "insertUrl": "Link [title](siyuan://blocks/id)"
+  },
   "msg": {
     "begin": "[Calendar Plugin]",
     "notNoteBook": "Failed to get the current notebook, please set it manually"
