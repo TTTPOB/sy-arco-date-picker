@@ -1,3 +1,22 @@
+# Fork Information
+
+This is a fork of [svchord/siyuan-arco-calendar](https://github.com/svchord/siyuan-arco-calendar).
+
+## Changes from Upstream
+
+This fork includes the following changes compared to the upstream repository:
+
+- **Keyboard Navigation**: Added keyboard navigation support for the date picker with arrow keys to move between dates
+- **Focus Indicators**: Added visual focus indicators for keyboard navigation accessibility
+- **Slash Date Picker**: Added slash command integration (`/date`) to quickly insert date links
+- **Enhanced Close Behavior**: Improved the date picker close behavior when using keyboard navigation
+
+The upstream repository was last synced at commit `634099b` (version 1.5.0).
+
+---
+
+# Original Content
+
 # 版本日志 | Changelog 
 
 

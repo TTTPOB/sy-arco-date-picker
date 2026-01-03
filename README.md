@@ -1,8 +1,27 @@
-# arco-date-picker
+# Fork 信息
+
+这是 [svchord/siyuan-arco-calendar](https://github.com/svchord/siyuan-arco-calendar) 的一个分支。
+
+## 相对于上游的更改
+
+相比上游仓库，本分支包含以下更改：
+
+- **键盘导航**：添加了使用方向键在日期之间移动的键盘导航支持
+- **焦点指示器**：添加了键盘导航的可视化焦点指示器
+- **斜杠日期选择器**：添加了斜杠命令集成 (`/date`) 以快速插入日期链接
+- **增强的关闭行为**：改进了使用键盘导航时的日期选择器关闭行为
+
+上游仓库最后同步于 commit `634099b` (版本 1.5.0)。
+
+---
+
+# Original Content
+
+# arco-calendar
 
 简体中文 \| [English](README_en_US.md)
 
-基于 Arco Design 的思源日历插件，增加斜杠菜单快速插入日记链接
+依赖 arco design 组件库开发的思源笔记日历插件
 
 <img width="1280" alt="preview" src="https://github.com/svchord/siyuan-arco-calendar/assets/61345763/6bdf09a9-b5a1-48f7-b499-340d44397787">
 

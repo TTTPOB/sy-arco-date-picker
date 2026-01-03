@@ -1,8 +1,27 @@
-# arco-date-picker
+# Fork Information
+
+This is a fork of [svchord/siyuan-arco-calendar](https://github.com/svchord/siyuan-arco-calendar).
+
+## Changes from Upstream
+
+This fork includes the following changes compared to the upstream repository:
+
+- **Keyboard Navigation**: Added keyboard navigation support for the date picker with arrow keys to move between dates
+- **Focus Indicators**: Added visual focus indicators for keyboard navigation accessibility
+- **Slash Date Picker**: Added slash command integration (`/date`) to quickly insert date links
+- **Enhanced Close Behavior**: Improved the date picker close behavior when using keyboard navigation
+
+The upstream repository was last synced at commit `634099b` (version 1.5.0).
+
+---
+
+# Original Content
+
+# arco-calendar
 
 [简体中文](README.md) \| English
 
-Siyuan calendar plugin based on Arco Design, with slash commands to insert daily note links
+Siyuan note calendar plug-in developed by relying on arco design component library
 
 <img width="1280" alt="preview" src="https://github.com/svchord/siyuan-arco-calendar/assets/61345763/6bdf09a9-b5a1-48f7-b499-340d44397787">
 
