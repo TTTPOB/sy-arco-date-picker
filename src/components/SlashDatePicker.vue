@@ -194,11 +194,12 @@ onMounted(() => {
   panelValue.value = dayjs(focusedDate.value).format('YYYY-MM-DD');
   panelDate.value = new Date(panelValue.value);
   // Use capture phase to intercept events before a-date-picker internal handlers
-  document.addEventListener('keydown', handleKeyDown, { capture: true });
+  containerRef.value?.addEventListener('keydown', handleKeyDown, { capture: true });
+  containerRef.value?.focus();
 });
 
 // Clean up event listener when component unmounts
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeyDown, { capture: true });
+  containerRef.value?.removeEventListener('keydown', handleKeyDown, { capture: true });
 });
 </script>

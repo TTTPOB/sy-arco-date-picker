@@ -1,24 +1,26 @@
 <template>
-  <a-date-picker
-    v-model="thisDay"
-    :picker-value="panelValue"
-    @picker-value-change="changeMonth"
-    hide-trigger
-    style="width: 268px; margin: auto; box-shadow: none"
-  >
-    <template #cell="{ date }">
-      <div class="arco-picker-date">
-        <div class="arco-picker-date-value" @click="openDailyNote(date)" :class="{ exist: getCell(date), 'keyboard-focused': isCellFocused(date) }">
-          {{ date.getDate() }}
+  <div ref="containerRef" tabindex="0" @mousedown="focusContainer">
+    <a-date-picker
+      v-model="thisDay"
+      :picker-value="panelValue"
+      @picker-value-change="changeMonth"
+      hide-trigger
+      style="width: 268px; margin: auto; box-shadow: none"
+    >
+      <template #cell="{ date }">
+        <div class="arco-picker-date">
+          <div class="arco-picker-date-value" @click="openDailyNote(date)" :class="{ exist: getCell(date), 'keyboard-focused': isCellFocused(date) }">
+            {{ date.getDate() }}
+          </div>
         </div>
-      </div>
-    </template>
-    <template #extra>
-      <a-row style="text-align: center">
-        <a-button size="mini" @click="clickToday"> {{ locale.datePicker.today }} </a-button>
-      </a-row>
-    </template>
-  </a-date-picker>
+      </template>
+      <template #extra>
+        <a-row style="text-align: center">
+          <a-button size="mini" @click="clickToday"> {{ locale.datePicker.today }} </a-button>
+        </a-row>
+      </template>
+    </a-date-picker>
+  </div>
 </template>
 <script lang="ts" setup>
 import dayjs from 'dayjs';
@@ -34,6 +36,11 @@ const { locale } = useLocale();
 
 const props = defineProps<{ notebook: CusNotebook | undefined }>();
 const { notebook } = toRefs(props);
+const containerRef = ref<HTMLElement | null>(null);
+
+function focusContainer() {
+  containerRef.value?.focus();
+}
 
 //已存在日记的日期
 const existDailyNotesMap = ref(new Map());
@@ -210,11 +217,11 @@ function getCell(date: Date) {
 
 // Set up keyboard event listener when component mounts
 onMounted(() => {
-  document.addEventListener('keydown', handleKeyDown);
+  containerRef.value?.addEventListener('keydown', handleKeyDown);
 });
 
 // Clean up event listener when component unmounts
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleKeyDown);
+  containerRef.value?.removeEventListener('keydown', handleKeyDown);
 });
 </script>
