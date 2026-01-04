@@ -8,6 +8,8 @@
       <a-date-picker
         v-model="selected"
         hide-trigger
+        :picker-value="panelValue"
+        @picker-value-change="changeMonth"
         :style="{ width: '268px', margin: 'auto', boxShadow: 'none' }"
       >
       <template #cell="{ date }">
@@ -51,6 +53,8 @@ const slash = computed(() => {
   };
 });
 const selected = ref<string | undefined>(undefined);
+const panelValue = ref(dayjs(new Date()).format('YYYY-MM-DD'));
+const panelDate = ref(new Date());
 
 // Keyboard navigation state
 const focusedDate = ref<Date | undefined>(undefined);
@@ -60,6 +64,8 @@ function selectDate(date: Date) {
   // Update keyboard focus state on click
   focusedDate.value = date;
   isKeyboardFocused.value = true;
+  panelValue.value = dayjs(date).format('YYYY-MM-DD');
+  panelDate.value = new Date(panelValue.value);
   emit('select', date);
 }
 
@@ -67,6 +73,8 @@ function selectOffset(offset: number) {
   const date = dayjs().add(offset, 'day').toDate();
   focusedDate.value = date;
   isKeyboardFocused.value = true;
+  panelValue.value = dayjs(date).format('YYYY-MM-DD');
+  panelDate.value = new Date(panelValue.value);
   emit('select', date);
 }
 
@@ -137,6 +145,10 @@ function navigateDate(offset: number, unit: 'day' | 'week' | 'month') {
   const newDate = dayjs(current).add(offset, unit).toDate();
   focusedDate.value = newDate;
   isKeyboardFocused.value = true;
+  if (unit === 'month' || dayjs(newDate).month() !== dayjs(panelDate.value).month()) {
+    panelValue.value = dayjs(newDate).format('YYYY-MM-DD');
+    panelDate.value = new Date(panelValue.value);
+  }
 }
 
 function moveToFirstOfMonth() {
@@ -144,6 +156,10 @@ function moveToFirstOfMonth() {
   const newDate = dayjs(current).date(1).toDate();
   focusedDate.value = newDate;
   isKeyboardFocused.value = true;
+  if (dayjs(newDate).month() !== dayjs(panelDate.value).month()) {
+    panelValue.value = dayjs(newDate).format('YYYY-MM-DD');
+    panelDate.value = new Date(panelValue.value);
+  }
 }
 
 function moveToLastOfMonth() {
@@ -151,6 +167,15 @@ function moveToLastOfMonth() {
   const newDate = dayjs(current).endOf('month').toDate();
   focusedDate.value = newDate;
   isKeyboardFocused.value = true;
+  if (dayjs(newDate).month() !== dayjs(panelDate.value).month()) {
+    panelValue.value = dayjs(newDate).format('YYYY-MM-DD');
+    panelDate.value = new Date(panelValue.value);
+  }
+}
+
+function changeMonth(dateStr: string) {
+  panelValue.value = dateStr;
+  panelDate.value = new Date(dateStr);
 }
 
 // Check if a cell has keyboard focus
@@ -166,6 +191,8 @@ onMounted(() => {
   // Set default focused date to today
   focusedDate.value = new Date();
   isKeyboardFocused.value = true;
+  panelValue.value = dayjs(focusedDate.value).format('YYYY-MM-DD');
+  panelDate.value = new Date(panelValue.value);
   // Use capture phase to intercept events before a-date-picker internal handlers
   document.addEventListener('keydown', handleKeyDown, { capture: true });
 });

@@ -1,6 +1,7 @@
 <template>
   <a-date-picker
     v-model="thisDay"
+    :picker-value="panelValue"
     @picker-value-change="changeMonth"
     hide-trigger
     style="width: 268px; margin: auto; box-shadow: none"
@@ -58,6 +59,7 @@ watch(notebook, notebook => {
 });
 
 const thisDay = ref();
+const panelValue = ref(dayjs(new Date()).format('YYYY-MM-DD'));
 
 // Keyboard navigation state
 const focusedDate = ref<Date | undefined>(undefined);
@@ -69,6 +71,8 @@ function clickToday() {
   isKeyboardFocused.value = true;
   openDailyNote(today);
   thisDay.value = dayjs(today).format('YYYY-MM-DD');
+  panelValue.value = dayjs(today).format('YYYY-MM-DD');
+  thisPanelDate.value = new Date(panelValue.value);
 }
 
 async function openDailyNote(date: Date) {
@@ -93,6 +97,7 @@ async function openDailyNote(date: Date) {
 
 const thisPanelDate = ref(new Date());
 function changeMonth(dateStr: string) {
+  panelValue.value = dateStr;
   thisPanelDate.value = new Date(dateStr);
   getExistDate(thisPanelDate.value);
 }
