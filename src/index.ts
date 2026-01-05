@@ -277,7 +277,7 @@ export default class ArcoCalendarPlugin extends Plugin {
     const content =
       this.settings.insertFormat === 'url'
         ? `[${dailyNote.dateStr}](siyuan://blocks/${dailyNote.id})`
-        : `((${dailyNote.id}))`;
+        : `((${dailyNote.id} "${dailyNote.dateStr}"))`;
     protyle.insert(content);
   }
 
