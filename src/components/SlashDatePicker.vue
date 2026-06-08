@@ -1,6 +1,6 @@
 <template>
   <a-config-provider :locale="locale">
-    <div class="slash-date-picker">
+    <div class="date-picker-shell slash-date-picker">
       <a-select
         v-model="selectNotebookId"
         :options="cusNotebooks"
