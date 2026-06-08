@@ -24,7 +24,7 @@ const DEFAULT_SETTINGS: PluginSettings = {
 };
 
 type SlashProtyle = {
-  insert: (content: string) => void;
+  insert: (content: string, isBlock?: boolean, useProtyleRange?: boolean) => void;
 };
 
 type SlashPickerState = {
@@ -278,7 +278,7 @@ export default class ArcoCalendarPlugin extends Plugin {
       this.settings.insertFormat === 'url'
         ? `[${dailyNote.dateStr}](siyuan://blocks/${dailyNote.id})`
         : `((${dailyNote.id} "${dailyNote.dateStr}"))`;
-    protyle.insert(content);
+    protyle.insert(content, false, true);
   }
 
   private async getSelectedNotebook(): Promise<CusNotebook | null> {
