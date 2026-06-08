@@ -225,7 +225,7 @@ export default class ArcoCalendarPlugin extends Plugin {
         filter: ['date', '日期', 'riqi'],
         html: `<div class=\"b3-list-item__first\"><span class=\"b3-list-item__text\">${i18n.value.slash?.date ?? '日期选择'}</span><span class=\"b3-list-item__meta\">/date</span></div>`,
         callback: ((protyle: SlashProtyle, nodeElement?: HTMLElement) => {
-          this.openSlashDatePicker(protyle, nodeElement);
+          void this.openSlashDatePicker(protyle, nodeElement);
         }) as unknown as (protyle: SlashProtyle) => void,
       },
       {
@@ -297,9 +297,10 @@ export default class ArcoCalendarPlugin extends Plugin {
     return CusNotebook.build(notebook);
   }
 
-  private openSlashDatePicker(protyle: SlashProtyle, nodeElement?: HTMLElement) {
+  private async openSlashDatePicker(protyle: SlashProtyle, nodeElement?: HTMLElement) {
     this.clearSlashInput(protyle);
     this.disposeSlashPicker();
+    const notebook = await this.getSelectedNotebook();
 
     const container = document.createElement('div');
     container.className = 'arco-date-picker-popover';
@@ -307,6 +308,7 @@ export default class ArcoCalendarPlugin extends Plugin {
     this.positionPopover(container, nodeElement);
 
     const app = createApp(SlashDatePicker, {
+      notebook,
       onSelect: async (date: Date) => {
         await this.insertDailyNoteLink(protyle, date);
         this.disposeSlashPicker();
