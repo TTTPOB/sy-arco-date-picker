@@ -1,14 +1,17 @@
 <template>
   <a-config-provider :locale="locale">
     <div class="date-picker-shell slash-date-picker">
-      <a-select
-        v-model="selectNotebookId"
-        :options="cusNotebooks"
-        :field-names="{ value: 'id', label: 'name' }"
-        :style="{ width: '100%', marginBottom: '8px' }"
-        :placeholder="siyuanI18n.placeholder"
-        allow-search
-      />
+      <div class="slash-date-picker__header">
+        <div class="slash-date-picker__title">{{ siyuanI18n.tabName }}</div>
+        <a-select
+          v-model="selectNotebookId"
+          :options="cusNotebooks"
+          :field-names="{ value: 'id', label: 'name' }"
+          :style="{ width: '160px' }"
+          :placeholder="siyuanI18n.placeholder"
+          allow-search
+        />
+      </div>
       <DatePickerPanel
         :quick-actions="quickActions"
         :is-date-existing="isDateExisting"
