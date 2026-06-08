@@ -16,6 +16,7 @@ declare module 'vue' {
     ATabPane: typeof import('@arco-design/web-vue')['TabPane']
     ATabs: typeof import('@arco-design/web-vue')['Tabs']
     CalendarView: typeof import('./src/components/CalendarView.vue')['default']
+    DatePickerPanel: typeof import('./src/components/DatePickerPanel.vue')['default']
     SlashDatePicker: typeof import('./src/components/SlashDatePicker.vue')['default']
   }
 }
