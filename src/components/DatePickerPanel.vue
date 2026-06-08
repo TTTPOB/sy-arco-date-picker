@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" tabindex="0" @mousedown="focusContainer">
+  <div ref="containerRef" class="date-picker-panel" tabindex="0" @mousedown="focusContainer">
     <a-date-picker
       v-model="selected"
       :picker-value="panelValue"
