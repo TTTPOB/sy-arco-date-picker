@@ -109,6 +109,17 @@ function stopEvent(event: KeyboardEvent) {
 function handleKeyDown(event: KeyboardEvent) {
   const key = event.key;
 
+  if (event.altKey && key === 'ArrowLeft') {
+    stopEvent(event);
+    navigateDate(-1, 'month');
+    return;
+  }
+  if (event.altKey && key === 'ArrowRight') {
+    stopEvent(event);
+    navigateDate(1, 'month');
+    return;
+  }
+
   switch (key) {
     case 'ArrowUp':
       stopEvent(event);
