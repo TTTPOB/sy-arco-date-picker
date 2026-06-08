@@ -268,12 +268,12 @@ export default class ArcoCalendarPlugin extends Plugin {
     await this.insertDailyNoteLink(protyle, targetDate);
   }
 
-  private async insertDailyNoteLink(protyle: SlashProtyle, date: Date) {
-    const notebook = await this.getSelectedNotebook();
-    if (!notebook) {
+  private async insertDailyNoteLink(protyle: SlashProtyle, date: Date, notebook?: CusNotebook) {
+    const targetNotebook = notebook ?? (await this.getSelectedNotebook());
+    if (!targetNotebook) {
       return;
     }
-    const dailyNote = await notebook.createDailyNote(date);
+    const dailyNote = await targetNotebook.createDailyNote(date);
     const content =
       this.settings.insertFormat === 'url'
         ? `[${dailyNote.dateStr}](siyuan://blocks/${dailyNote.id})`
@@ -284,6 +284,10 @@ export default class ArcoCalendarPlugin extends Plugin {
   private async getSelectedNotebook(): Promise<CusNotebook | null> {
     const storage = await request('/api/storage/getLocalStorage');
     const notebookId = storage?.['local-dailynoteid'];
+    return this.getNotebookById(notebookId);
+  }
+
+  private async getNotebookById(notebookId: NotebookId | undefined): Promise<CusNotebook | null> {
     if (!notebookId) {
       await pushErrMsg(formatMsg('notNoteBook'));
       return null;
@@ -300,7 +304,6 @@ export default class ArcoCalendarPlugin extends Plugin {
   private async openSlashDatePicker(protyle: SlashProtyle, nodeElement?: HTMLElement) {
     this.clearSlashInput(protyle);
     this.disposeSlashPicker();
-    const notebook = await this.getSelectedNotebook();
 
     const container = document.createElement('div');
     container.className = 'arco-date-picker-popover';
@@ -308,9 +311,12 @@ export default class ArcoCalendarPlugin extends Plugin {
     this.positionPopover(container, nodeElement);
 
     const app = createApp(SlashDatePicker, {
-      notebook,
-      onSelect: async (date: Date) => {
-        await this.insertDailyNoteLink(protyle, date);
+      onSelect: async (date: Date, notebookId: NotebookId | undefined) => {
+        const notebook = await this.getNotebookById(notebookId);
+        if (!notebook) {
+          return;
+        }
+        await this.insertDailyNoteLink(protyle, date, notebook);
         this.disposeSlashPicker();
       },
       onClose: () => {
