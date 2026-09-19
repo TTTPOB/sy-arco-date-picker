@@ -20,6 +20,7 @@
 @import '@arco-design/web-vue/es/_components/picker/style/index.css';
 @import '@arco-design/web-vue/es/time-picker/style/index.css';
 @import '@arco-design/web-vue/es/button/style/index.css';
+@import '@arco-design/web-vue/es/space/style/index.css';
 @import '@arco-design/web-vue/es/link/style/index.css';
 @import '@arco-design/web-vue/es/date-picker/style/index.css';
 
@@ -99,11 +100,11 @@
     // 当月日期
     &.arco-picker-cell-in-view {
       .arco-picker-date-value:hover {
-        border-color: rgb(var(--primary-6));
+        border-color: var(--b3-theme-primary);
       }
 
       .exist {
-        color: rgb(var(--primary-6)) !important;
+        color: var(--b3-theme-primary) !important;
         background-color: var(--color-primary-light-2);
 
         &:hover {
@@ -144,15 +145,57 @@
 .arco-date-picker-popover {
   position: fixed;
   z-index: 10050;
-  padding: 8px;
-  border-radius: 12px;
+  padding: 6px;
   border: 1px solid var(--b3-border-color);
+  border-radius: var(--b3-border-radius);
   background: var(--b3-menu-background);
   box-shadow: var(--b3-dialog-shadow);
+  color: var(--b3-theme-on-background);
+  font-family: var(--b3-font-family);
+  font-size: var(--b3-font-size);
 }
 
 .slash-date-picker {
   width: 280px;
+
+  .arco-picker-container,
+  .arco-picker-panel,
+  .arco-picker-date {
+    background: transparent;
+  }
+
+  .arco-picker-header {
+    border-bottom-color: var(--b3-border-color);
+  }
+
+  .arco-picker-header-icon,
+  .arco-picker-header-title,
+  .arco-picker-cell,
+  .arco-picker-week-list-item {
+    color: var(--b3-theme-on-background);
+  }
+
+  .arco-picker-cell:not(.arco-picker-cell-in-view) {
+    opacity: 0.45;
+  }
+
+  .arco-picker-cell-selected .arco-picker-date-value {
+    color: var(--b3-theme-on-primary);
+    background: var(--b3-theme-primary);
+  }
+
+  .arco-btn-secondary {
+    border: 1px solid var(--b3-border-color);
+    background: transparent;
+    color: var(--b3-theme-on-background);
+    box-shadow: none;
+
+    &:hover {
+      border-color: var(--b3-theme-primary);
+      background: var(--b3-list-hover);
+      color: var(--b3-theme-primary);
+    }
+  }
 }
 
 .slash-date-picker__header {
@@ -160,15 +203,28 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 8px;
+  padding: 2px 2px 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--b3-border-color);
 }
 
 .slash-date-picker__title {
-  color: rgb(var(--primary-6));
-  font-size: 16px;
-  line-height: 32px;
-  padding: 0 16px;
-  border-bottom: 2px solid rgb(var(--primary-6));
+  min-width: 0;
+  overflow: hidden;
+  color: var(--b3-theme-on-background);
+  font-size: var(--b3-font-size);
+  font-weight: 600;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slash-date-picker__notebook {
+  width: 156px;
+  min-width: 0;
+  height: 28px;
+  padding-right: 24px;
+  font-size: var(--b3-font-size);
 }
 
 .date-picker-panel:focus {
@@ -179,9 +235,9 @@
 .arco-picker-cell {
   .arco-picker-date-value.keyboard-focused {
     background-color: var(--color-fill-2);
-    border: 2px solid rgb(var(--primary-6)) !important;
+    border: 2px solid var(--b3-theme-primary) !important;
     border-radius: var(--border-radius-medium);
-    box-shadow: 0 0 4px rgba(var(--primary-6), 0.3);
+    box-shadow: 0 0 0 2px var(--b3-theme-primary-lightest);
   }
 
   // Ensure the focused state works with exist class

@@ -3,14 +3,17 @@
     <div class="date-picker-shell slash-date-picker">
       <div class="slash-date-picker__header">
         <div class="slash-date-picker__title">{{ siyuanI18n.tabName }}</div>
-        <a-select
+        <select
           v-model="selectNotebookId"
-          :options="cusNotebooks"
-          :field-names="{ value: 'id', label: 'name' }"
-          :style="{ width: '160px' }"
-          :placeholder="siyuanI18n.placeholder"
-          allow-search
-        />
+          class="b3-select slash-date-picker__notebook"
+          :aria-label="siyuanI18n.placeholder"
+          :title="siyuanI18n.placeholder"
+        >
+          <option :value="undefined" disabled>{{ siyuanI18n.placeholder }}</option>
+          <option v-for="notebook in cusNotebooks" :key="notebook.id" :value="notebook.id">
+            {{ notebook.name }}
+          </option>
+        </select>
       </div>
       <DatePickerPanel
         :quick-actions="quickActions"
