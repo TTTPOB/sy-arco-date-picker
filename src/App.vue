@@ -1,24 +1,22 @@
 <template>
   <a-config-provider :locale="locale">
-    <a-tabs class="date-picker-shell" style="width: 280px">
-      <template #extra>
-        <a-select
+    <div class="date-picker-shell calendar-date-picker">
+      <div class="date-picker-shell__header">
+        <div class="date-picker-shell__title">{{ i18n.tabName }}</div>
+        <select
           v-model="selectNotebookId"
-          :options="cusNotebooks"
-          :field-names="{ value: 'id', label: 'name' }"
-          :style="{ width: '160px', margin: 'auto' }"
-          :placeholder="i18n.placeholder"
-          allow-search
+          class="b3-select date-picker-shell__notebook"
+          :aria-label="i18n.placeholder"
+          :title="i18n.placeholder"
         >
-        </a-select>
-      </template>
-      <a-tab-pane key="1">
-        <template #title> {{ i18n.tabName }} </template>
-        <CalendarView :notebook="selectNotebook" />
-      </a-tab-pane>
-      <!-- <a-tab-pane key="2">
-        </a-tab-pane> -->
-    </a-tabs>
+          <option :value="undefined" disabled>{{ i18n.placeholder }}</option>
+          <option v-for="notebook in cusNotebooks" :key="notebook.id" :value="notebook.id">
+            {{ notebook.name }}
+          </option>
+        </select>
+      </div>
+      <CalendarView :notebook="selectNotebook" />
+    </div>
   </a-config-provider>
 </template>
 

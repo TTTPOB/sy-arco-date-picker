@@ -1,11 +1,11 @@
 <template>
   <a-config-provider :locale="locale">
     <div class="date-picker-shell slash-date-picker">
-      <div class="slash-date-picker__header">
-        <div class="slash-date-picker__title">{{ siyuanI18n.tabName }}</div>
+      <div class="date-picker-shell__header">
+        <div class="date-picker-shell__title">{{ siyuanI18n.tabName }}</div>
         <select
           v-model="selectNotebookId"
-          class="b3-select slash-date-picker__notebook"
+          class="b3-select date-picker-shell__notebook"
           :aria-label="siyuanI18n.placeholder"
           :title="siyuanI18n.placeholder"
         >

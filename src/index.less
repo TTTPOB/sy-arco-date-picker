@@ -155,9 +155,12 @@
   font-size: var(--b3-font-size);
 }
 
+.calendar-date-picker,
 .slash-date-picker {
   width: 280px;
+}
 
+.date-picker-shell {
   .arco-picker-container,
   .arco-picker-panel,
   .arco-picker-date {
@@ -198,7 +201,7 @@
   }
 }
 
-.slash-date-picker__header {
+.date-picker-shell__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -208,7 +211,7 @@
   border-bottom: 1px solid var(--b3-border-color);
 }
 
-.slash-date-picker__title {
+.date-picker-shell__title {
   min-width: 0;
   overflow: hidden;
   color: var(--b3-theme-on-background);
@@ -219,7 +222,7 @@
   white-space: nowrap;
 }
 
-.slash-date-picker__notebook {
+.date-picker-shell__notebook {
   width: 156px;
   min-width: 0;
   height: 28px;
