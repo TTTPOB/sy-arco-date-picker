@@ -1,6 +1,13 @@
 # 版本日志 | Changelog 
 
 
+### [1.6.1](https://github.com/TTTPOB/sy-arco-date-picker/compare/v1.6.0...v1.6.1) (2026-09-19)
+
+
+### 代码格式 | Styles
+
+* unify date picker with SiYuan theme ([4e286d9](https://github.com/TTTPOB/sy-arco-date-picker/commit/4e286d965cf40ab56b9bc7e8f7dbc1d70ab3c71a))
+
 ## 1.6.0 (2026-09-19)
 
 
