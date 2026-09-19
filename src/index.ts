@@ -174,16 +174,18 @@ export default class ArcoCalendarPlugin extends Plugin {
   }
 
   private addTopItem(direction: 'left' | 'right') {
-    this.topEle = this.addTopBar({
+    const topBarOptions = {
+      id: 'calendar',
       icon: 'iconCalendar',
       title: this.i18n.openCalendar,
       position: direction,
       callback: () => {
         let rect = this.topEle.getBoundingClientRect();
-        // 如果被隐藏，则使用更多按钮
+        // Hidden top-bar entries are opened from SiYuan's overflow button.
         if (rect.width === 0) {
-          rect = document.querySelector('#barMore')!.getBoundingClientRect();
+          rect = document.querySelector<HTMLElement>('#barMore')?.getBoundingClientRect() ?? rect;
         }
+
         const menu = new Menu('Calendar');
         menu.addItem({ element: this.menuEle });
         if (isMobile.value) {
@@ -196,7 +198,8 @@ export default class ArcoCalendarPlugin extends Plugin {
           });
         }
       },
-    });
+    };
+    this.topEle = this.addTopBar(topBarOptions);
     this.menuEle = document.createElement('div');
     createApp(CalendarApp).mount(this.menuEle);
   }

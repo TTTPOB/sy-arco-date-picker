@@ -6,6 +6,6 @@ export const i18n = ref<I18N>({});
 
 export const isMobile = ref<boolean>(false);
 
-export const eventBus = ref<EventBus>();
+export const eventBus = shallowRef<EventBus>();
 
 export const position = ref();
